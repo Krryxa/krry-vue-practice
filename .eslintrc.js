@@ -3,27 +3,15 @@ module.exports = {
   env: {
     node: true
   },
-  extends: [
-    'plugin:vue/essential',
-    '@vue/standard',
-    '@vue/typescript/recommended'
-  ],
+  extends: ['plugin:vue/essential', 'standard'],
   parserOptions: {
-    ecmaVersion: 2020
+    parser: 'babel-eslint'
   },
   rules: {
+    'space-before-function-paren': 0,
+    // allow async-await
+    'generator-star-spacing': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
-  },
-  overrides: [
-    {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
-      ],
-      env: {
-        mocha: true
-      }
-    }
-  ]
+  }
 }
