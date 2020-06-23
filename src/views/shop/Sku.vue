@@ -3,33 +3,58 @@
     <div v-for="({ title, list }, index) in initialState.specList" :key="index">
       <p class="title">{{ title }}</p>
       <div class="specBox">
-        <span v-for="(ele, index) in list"
+        <button v-for="(ele, index) in list"
           :key="index"
-          :class="{ specOption: isOption, specAction: isActive, specDisabled: !isOption }"
+          :disabled="!optionSpecs.includes(ele)"
+          :class="{ specAction: specsS.includes(ele) }"
+          @click="handleClick(ele, index)"
         >
           {{ ele }}
-        </span>
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { initialState } from './config'
+import { initialState } from './config/dataList'
+import SpecAdjoinMatrix from './config/spec-adjoin-martix'
 export default {
   data() {
     return {
-      initialState: initialState
+      initialState: initialState,
+      specsS: [],
+      optionSpecs: [],
+      specAdjoinMatrix: null
     }
   },
-  created() {},
+  created() {
+    this.initData()
+  },
   mounted() {},
   computed: {},
-  methods: {}
+  methods: {
+    initData() {
+      const { specList, specCombinationList } = this.initialState
+      this.specsS = Array(specList.length).fill('')
+      // 创建一个规格矩阵
+      this.specAdjoinMatrix = new SpecAdjoinMatrix(specList, specCombinationList)
+      // 获得可选项表
+      this.optionSpecs = this.specAdjoinMatrix.getSpecscOptions(this.specsS)
+    },
+    handleClick(text, index) {
+      const bool = this.optionSpecs.includes(text) // 当前规格是否可选
+      // 排除可选规格里面没有的规格
+      if (this.specsS[index] !== text && !bool) return
+      // 根据text判断是否已经被选中了
+      this.specsS[index] = this.specsS[index] === text ? '' : text
+      this.optionSpecs = this.specAdjoinMatrix.getSpecscOptions(this.specsS)
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .container {
   width: 600px;
   height: 500px;
@@ -48,24 +73,20 @@ export default {
 }
 .specBox {
   margin: 5px 0 5px 0;
-}
-.specOption {
-  margin-left: 20px;
-  background-color: #f3f3f3;
-  padding: 5px 10px 5px 10px;
-  color: #505257;
+  button {
+    padding: 5px 10px 5px 10px;
+    border: 1px solid transparent;
+    margin-left: 20px;
+    cursor: pointer;
+    &[disabled="disabled"] {
+      cursor: not-allowed;
+    }
+  }
 }
 .specAction {
   margin-left: 20px;
   background-color: #fef6f4;
-  padding: 5px 10px 5px 10px;
   color: #e34a40;
-  border: 1px solid #e34a40;
-}
-.specDisabled {
-  margin-left: 20px;
-  background-color: #f3f3f3;
-  padding: 5px 10px 5px 10px;
-  color: #bebebe;
+  border: 1px solid #e34a40 !important;
 }
 </style>
