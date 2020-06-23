@@ -3,8 +3,8 @@
     <div v-for="({ title, list }, index) in initialState.specList" :key="index">
       <p class="title">{{ title }}</p>
       <div class="specBox">
-        <button v-for="(ele, index) in list"
-          :key="index"
+        <button v-for="(ele, listIndex) in list"
+          :key="listIndex"
           :disabled="!optionSpecs.includes(ele)"
           :class="{ specAction: specsS.includes(ele) }"
           @click="handleClick(ele, index)"
