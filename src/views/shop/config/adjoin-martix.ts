@@ -1,7 +1,7 @@
 export type AdjoinType = Array<string>;
 
 export default class AdjoinMatrix {
-  vertex: AdjoinType; // 顶点数组
+  vertex: AdjoinType; // 顶点数组（包含所有规格）
   quantity: number; // 矩阵长度
   adjoinArray: Array<number>; // 矩阵数组
 
@@ -14,6 +14,7 @@ export default class AdjoinMatrix {
 
   // 初始化数组
   init() {
+    // 邻接矩阵初始化
     this.adjoinArray = Array(this.quantity * this.quantity).fill(0)
   }
 
@@ -26,6 +27,11 @@ export default class AdjoinMatrix {
     const pIndex = this.vertex.indexOf(id)
     sides.forEach(item => {
       const index = this.vertex.indexOf(item)
+      // 从邻接矩阵上看，
+      // pIndex 是传入的顶点 index；
+      // quantity 是邻接矩阵中行的 length；
+      // index 是传入的顶点下的可组合的顶点元素下标
+      // 那么 [pIndex * this.quantity + index] 就是可组合的 sku，置为 1
       this.adjoinArray[pIndex * this.quantity + index] = 1
     })
   }
