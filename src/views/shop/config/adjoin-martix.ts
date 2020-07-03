@@ -54,8 +54,11 @@ export default class AdjoinMatrix {
    * 传入一个顶点数组，求出该数组所有顶点的列的合
    */
   getColSum(params: AdjoinType) {
+    // 所有顶点的列，[[], [], ...]
     const paramsVertex = params.map(id => this.getVertexCol(id))
     const paramsVertexSum: Array<number> = []
+    // 下面这个 forEach 和 map 能够取出每个顶点的列的同一个 index 下的值（也就是每个顶点列的同一行数据）
+    // 得到顶点列的同一行数据后，通过 reduce 进行相加。数字大于等于总列数，说明是可选的
     this.vertex.forEach((item, index) => {
       const rowtotal = paramsVertex
         .map(value => value[index])
@@ -76,7 +79,9 @@ export default class AdjoinMatrix {
     const paramsColSum = this.getColSum(params)
     const collections: AdjoinType = []
     paramsColSum.forEach((item, index) => {
-      if (item && this.vertex[index]) collections.push(this.vertex[index])
+      if (item && this.vertex[index]) {
+        collections.push(this.vertex[index])
+      }
     })
     return collections
   }
@@ -89,7 +94,10 @@ export default class AdjoinMatrix {
     const paramsColSum = this.getColSum(params)
     const unions: AdjoinType = []
     paramsColSum.forEach((item, index) => {
-      if (item >= params.length && this.vertex[index]) { unions.push(this.vertex[index]) }
+      // 数字大于等于总列数，说明是可选的
+      if (item >= params.length && this.vertex[index]) {
+        unions.push(this.vertex[index])
+      }
     })
     return unions
   }
