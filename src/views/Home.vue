@@ -8,11 +8,15 @@
 </template>
 
 <script>
+// import imgLazy from '@/directive/imgLazy'
 export default {
   name: 'Home',
   components: {
     KrryInput: () => import('@/components/KrryInput')
   },
+  // directives: {
+  //   imgLazy
+  // },
   data() {
     return {
       imgSrc: [
