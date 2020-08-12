@@ -22,8 +22,6 @@ function showImage(el: any, imgSrc: any) {
 }
 
 export default {
-  // 这里用inserted和bind都行，因为IntersectionObserver时异步的，以防意外还是用inserted好一点
-  // inserted和bind的区别在于inserted时元素已经插入页面，能够直接获取到dom元素的位置信息
   inserted(el: any, binding: any, vnode: any) {
     clearTimeout(timer)
     // 初始化时展示默认图片
