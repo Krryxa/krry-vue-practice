@@ -21,8 +21,9 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/ImgLazyDirective.vue')
   },
   {
-    path: '/v_model',
+    path: '/v_model/:id?',
     name: 'v_model',
+    props: true,
     component: () => import('@/views/VModel.vue')
   }
 ]
