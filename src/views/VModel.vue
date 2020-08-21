@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <back-btn></back-btn>
+    <back-btn :name="say"></back-btn>
     <krry-input v-model="say"></krry-input>
   </div>
 </template>

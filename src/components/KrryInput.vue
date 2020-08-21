@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input :value="value" @change="$_handleChange" />
+    <input :value="value" @input="$_handleInput" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
     return {}
   },
   methods: {
-    $_handleChange(e) {
+    $_handleInput(e) {
       this.$emit('input', e.target.value)
     }
   }
