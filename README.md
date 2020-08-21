@@ -1,4 +1,4 @@
-# krry-shop-sku
+# krry-vue-practice
 
 ## Project setup
 ```
