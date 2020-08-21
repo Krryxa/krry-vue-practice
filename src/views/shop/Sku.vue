@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <back-btn></back-btn>
     <div v-for="({ title, list }, index) in initialState.specList" :key="index">
       <p class="title">{{ title }}</p>
       <div class="specBox">

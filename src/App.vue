@@ -15,4 +15,7 @@ button {
   border: none;
   outline: none;
 }
+ul li {
+  list-style: none;
+}
 </style>

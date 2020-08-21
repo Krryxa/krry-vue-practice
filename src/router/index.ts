@@ -12,8 +12,18 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/sku',
-    name: 'Sku',
+    name: 'sku',
     component: () => import('@/views/shop/Sku.vue')
+  },
+  {
+    path: '/imgLazy',
+    name: 'imgLazy',
+    component: () => import('@/views/ImgLazyDirective.vue')
+  },
+  {
+    path: '/v_model',
+    name: 'v_model',
+    component: () => import('@/views/VModel.vue')
   }
 ]
 
