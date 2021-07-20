@@ -2,12 +2,17 @@
   <div class="home">
     <back-btn></back-btn>
     <div class="img-container">
-      <img v-for="(item, index) in imgSrc" :key="index" v-imgLazy="item" height="300" />
+      <img
+        v-for="(item, index) in imgSrc"
+        :key="index"
+        v-imgLazy="item"
+        height="300"
+      />
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // import imgLazy from '@/directive/imgLazy'
 export default {
   // directives: {
@@ -41,6 +46,7 @@ export default {
 .img-container {
   height: 500px;
   overflow: auto;
+
   img {
     display: block;
   }
