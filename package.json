@@ -58,6 +58,10 @@
     "*.{js,jsx,vue,ts,tsx}": [
       "vue-cli-service lint",
       "git add"
+    ],
+    "*.{vue,css,scss}": [
+      "stylelint --fix",
+      "git add -A"
     ]
   }
 }

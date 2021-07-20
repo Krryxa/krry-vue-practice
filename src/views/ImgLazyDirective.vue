@@ -46,6 +46,7 @@ export default {
 .img-container {
   height: 500px;
   overflow: auto;
+  color: red;
 
   img {
     display: block;
